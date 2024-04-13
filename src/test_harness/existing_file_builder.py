@@ -30,7 +30,7 @@ class ExistingFileBuilder():
         self.folder = f'{client_account}/{self.stage}'
         self.size_in_bytes = seed * 100
         self.created_date = from_date - timedelta(days=5)
-        self.hash = file_hash    
+        self.file_hash = file_hash    
         self.number_of_changes = 1
         self.last_change_date = from_date
         self.from_date = from_date
@@ -45,7 +45,11 @@ class ExistingFileBuilder():
             self.filename = filename        
         
         return self
-        
+    
+    def set_file_step(self, stage:Stage, source:Source):
+        self.stage = stage
+        self.source = source        
+        return self        
     
     def build(self) -> ExistingFile:
         return ExistingFile.Create(filename=self.filename, source=self.source, stage=self.stage, client_account=self.client_account, 

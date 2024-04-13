@@ -35,8 +35,12 @@ class CurrentFileBuilder():
         if (filename != None):
             self.filename = filename        
         
-        return self    
+        return self   
     
+    def set_file_step(self, stage:Stage, source:Source):
+        self.stage = stage
+        self.source = source        
+        return self    
     
     def build(self) -> CurrentFile:
         return CurrentFile.Create(filename=self.filename, source=self.source, stage=self.stage, client_account=self.client_account, 
